@@ -8,6 +8,7 @@ import About from './components/About/About.js';
 import Favorite from './components/Favorite/Favorite';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './components/NotFound/NotFound.js';
+import List from './components/List/List.js';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="*" element={<NotFound />} />
+          {/* <Route path="/list" element={<List />} /> */}
+          <Route path="/list/:listId" element={<List />} />
         </Routes>
       </Container>
     </main>

@@ -1,0 +1,31 @@
+@import '../../styles/settings.scss';
+
+.listForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  flex-wrap: wrap;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  label span {
+    margin-bottom: $base-size;
+  }
+}
+
+@media (max-width: 655px) {
+  .listForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .listForm label {
+    justify-content: space-around;
+  }
+}
