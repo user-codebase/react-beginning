@@ -11,6 +11,8 @@ import strContains from '../utils/strContains';
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
   .filter(card => card.columnId === columnId && strContains(card.title, searchString));
 
+export const getFavoriteCards = ({ cards }) => cards.filter(card => card.isFavorite);
+
 export const getAllColumns = state => state.columns;
 
 const reducer = (state, action) => {
@@ -24,6 +26,8 @@ const reducer = (state, action) => {
       return {...state, searchString: action.payload};
     case 'ADD_LIST':
       return {...state, lists: [...state.lists, { ...action.payload, id: shortid() }]};
+    case 'TOGGLE_CARD_FAVORITE':
+      return { ...state, cards: state.cards.map(card => (card.id === action.payload) ? { ...card, isFavorite: !card.isFavorite } : card) };
     default:
       return state;
   }
