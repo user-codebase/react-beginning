@@ -1,22 +1,35 @@
 import styles from './Card.module.scss';
 import { useDispatch } from 'react-redux';
+import { toggleFavorite, removeCard } from '../../redux/cardsRedux';
 
 const Card = props => {
 
   const dispatch = useDispatch();
 
-  const handleToggleFavorite = () => {
-    dispatch({ type: 'TOGGLE_CARD_FAVORITE', payload: props.id });
+  const handleFavorite = () => {
+    dispatch(toggleFavorite(props.id));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeCard(props.id));
   };
 
   return (
     <li className={styles.card}>
       {props.title}
-      <button
-        onClick={handleToggleFavorite}
-        className={styles.favorite + (props.isFavorite ? ' ' + styles.favoriteActive : '')}>
-        <span className="fa fa-star-o"></span>
-      </button>
+      <div>
+        <button
+          onClick={handleFavorite}
+          className={styles.favorite + (props.isFavorite ? ' ' + styles.favoriteActive : '')}>
+          <span className="fa fa-star-o"></span>
+        </button>
+        <button
+          onClick={handleRemove}
+          className={styles.remove}
+        >
+          <span className="fa fa-trash"></span>
+        </button>
+      </div>
     </li>
   ); 
 };
